@@ -1,0 +1,1 @@
+clang++-18 -Xclang -ast-dump=json -fsyntax-only ../src/main.cpp > main.json
