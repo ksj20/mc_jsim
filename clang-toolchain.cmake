@@ -1,2 +1,0 @@
-set(CMAKE_C_COMPILER /usr/bin/clang-18 CACHE FILEPATH "")
-set(CMAKE_CXX_COMPILER /usr/bin/clang++-18 CACHE FILEPATH "")
