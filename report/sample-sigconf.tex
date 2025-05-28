@@ -533,34 +533,27 @@ nodes; columns~2–4 show the average wall time for (i) fingerprint extraction,
 \begin{tabular}{@{}rccc@{}}
 \toprule
 Nodes &
-Fingerprint (\(\mu\text{s}/\text{node}\)) &
-Sketch (\(\mu\text{s}/\text{node}\)) &
-Compare (\(\mu\text{s}/\text{pair}\)) \\
+Fingerprint (\(\mu\mathrm{s}/\mathrm{node}\)) &
+Sketch (\(\mu\mathrm{s}/\mathrm{node}\)) &
+Compare (\(\mu\mathrm{s}/\mathrm{pair}\)) \\
 \midrule
-  100   & 4.65 & 317.19 & 35,088 \\
-1,000  & 3.50 & 155.00 & 162,008 \\
-10,000 & 2.42 & 148.15 & 1,411,412 \\
+   100   & 4.65  & 317.19   & 35{,}088 \\
+ 1{,}000 & 3.50  & 155.00   & 162{,}008 \\
+10{,}000 & 2.42  & 148.15   &1{,}411{,}412\\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{itemize}
-\item \textbf{Linear fingerprinting.}  Per-node cost decreases from
-      4.6 to 2.4 µs as the document grows, confirming \(O(n)\) behaviour.
-\item \textbf{Sketch construction.}  After an initial start-up cost
-      the per-node time stabilises near 150 µs, also linear in input size.
-\item \textbf{Similarity computation.}  A full \textsc{MC--JSim}
-      comparison—including path alignment, content divergence, and
-      structural penalties—takes a constant 64-hash pass plus value
-      look-ups, translating to 35 ms for 100-node objects and about
-      1.4 s for 10 k-node objects.
+  \item \textbf{Linear fingerprinting.}  
+        Per‐node cost falls from 4.65 µs to 2.42 µs as the document grows, confirming \(O(n)\) behaviour.
+  \item \textbf{Sketch construction.}  
+        After an initial startup, per‐node hashing stabilises near 150 µs, also linear in input size.
+  \item \textbf{Full similarity compare.}  
+        A complete MC–JSim run—including MinHash Jaccard, content divergence, and structural penalties—takes about 35 ms for 100‐node documents and about 1.4 s for 10 000‐node documents.  Extrapolating further, a 100 000‐node file can be fingerprinted in \(\approx0.24\) s, while the full comparison would take on the order of 14 s on this hardware.
 \end{itemize}
 
-Overall throughput therefore remains linear in document size for
-fingerprinting and sketching, while the comparison step grows with the
-number of primitives but stays far below a full tree-edit pass; for
-example, a 100 k-node file would fingerprint in \(\approx0.29\) s and two
-sketches would compare in \(\approx14\) ms on this hardware.
+Overall, fingerprinting and sketching remain near‐linear in document size, and even the more expensive full similarity comparison, while growing with the number of nodes, stays far below the cost of exact tree‐edit algorithms.  
 
 \bigskip
 \noindent\textbf{Clustering tests.}
