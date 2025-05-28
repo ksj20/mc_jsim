@@ -1,4 +1,4 @@
-# json_tree_similarity
+# Monte Carlo JSON Similarity (MC-JSIM)
 
 Uses Python 3.10.15
 
